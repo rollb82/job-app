@@ -1,0 +1,23 @@
+<div>
+  <button (click)="goBack()">Back</button>
+  <button (click)="addBookMark()">{{bookmarkButtonText}}</button>
+  <button (click)="addFavorite()">{{favoriteButtonText}}</button>
+  <div *ngIf="applicant">
+    <h1>{{ applicant.name }}</h1>
+    <p>Position: {{ applicant.position }}</p>
+    <p>{{ applicant.applied }} </p>
+    <p>Experience {{ applicant.experience }}</p>
+    <div>
+      <p>Questions</p>
+      <div *ngFor="let question of applicant.questions">
+        <h2>{{ question.text }}</h2>
+        <p>{{ question.answer }}</p>
+      </div>
+    </div>
+
+    Availability:
+    <div *ngFor="let day of schedule">
+      {{ day.day }} {{ day.time|timeOfDay }}
+    </div>
+  </div>
+</div>

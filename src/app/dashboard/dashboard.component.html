@@ -1,0 +1,40 @@
+<div>
+  
+  <div>
+    <input type="text" [(ngModel)]="search" (keyup)="filterByName(search)" placeholder="Enter search term">
+  </div>
+  <hr>
+  <!--
+    1. TODO: Create a json structure to deal with rendering filters and calling functions based on events and possibly place in a component
+    2. Set filter icons based on the current direction and the sortBy property.
+  -->
+  <button [class.selectedSort]="sortBy === 'id'" (click)="changeSort('id',direction)">
+    Sort by id
+    <i class="fa fa-chevron-circle-down" aria-hidden="true"></i>
+  </button>
+  <button [class.selectedSort]="sortBy === 'name'" (click)="changeSortString('name',direction)">
+    Sort by name
+    <i class="fa fa-chevron-circle-down" aria-hidden="true"></i>
+  </button>
+  <button [class.selectedSort]="sortBy === 'position'" (click)="changeSortString('position',direction)">
+    Sort by position
+    <i class="fa fa-chevron-circle-down" aria-hidden="true"></i>
+  </button>
+  <button [class.selectedSort]="sortBy === 'experience'" (click)="changeSort('experience',direction)">
+    Sort by experience
+    <i class="fa fa-chevron-circle-down" aria-hidden="true"></i>
+  </button>
+  <!--END TODO: Create a json structure to deal with rendering filters and calling functions based on events-->
+  <div *ngFor="let applicant of filterdApplications" [routerLink]="['/applicant', applicant.id]">
+    <h2>
+      {{ applicant.name }}
+    </h2>
+    <div>
+      <p *ngIf="applicant.bookmark">Bookmarked</p>
+      <p *ngIf="applicant.favorite">has ben favorited</p>
+    </div>
+    <p>{{ applicant.position }}</p>
+    <p>{{ applicant.applied }}</p>
+    <p>experience {{ applicant.experience }}</p>
+  </div>
+</div>
